@@ -1,0 +1,34 @@
+# This is a hack to support IBM's Advanced Toolchain on POWER
+# This hack assumes that the AT has been installed per defaults
+
+easyblock = 'CmdCp'
+name = 'at'
+version = '8.0'
+versionsuffix = 'ppc64le'
+
+homepage = 'ftp://ftp.unicamp.br/pub/linuxpatch/toolchain/at/'
+description = """Placeholder EasyBuild module for IBMs Advanced Toolchain default installation"""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+skipsteps = ['source']
+
+this_ec = '%s-%s-%s.eb' % (name, version, versionsuffix)
+sources = [this_ec]
+
+cmds_map = [(this_ec, "echo 'This provides an EasyBuild placeholder for the IBM Advanced Toolchain default installation.' > README")]
+
+files_to_copy = [(['README'], '.')]
+
+sanity_check_paths = {
+    'files': ['README'],
+    'dirs': ['.'],
+}
+
+modextrapaths = {
+    'PATH': '.:/opt/at%s/bin' % (version, ),
+}
+
+moduleclass = 'devel'
+# EOF
+
